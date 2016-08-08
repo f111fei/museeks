@@ -142,6 +142,13 @@ class IpcManager {
             this.window.show();
         });
 
+        ipcMain.on('reloadWindow', () => {
+            this.window.reload();
+        });
+
+        ipcMain.on('toggleDevTools', () => {
+            this.window.webContents.openDevTools();
+        });
 
         this.window.on('closed', () => {
             // Dereference the window object

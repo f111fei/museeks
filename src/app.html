@@ -15,6 +15,29 @@
 
         <script>
             const electron = require('electron');
+            const ipc = electron.ipcRenderer;
+
+            var extractKey = function(e) {
+                return [
+                    e.ctrlKey ? 'ctrl-' : '',
+                    e.metaKey ? 'meta-' : '',
+                    e.altKey ? 'alt-' : '',
+                    e.shiftKey ? 'shift-' : '',
+                    e.keyCode
+                ].join('');
+            };
+
+            var TOGGLE_DEV_TOOLS_KB = (process.platform === 'darwin' ? 'meta-alt-73' : 'ctrl-shift-73'); // mac: Cmd-Alt-I, rest: Ctrl-Shift-I
+            var RELOAD_KB = (process.platform === 'darwin' ? 'meta-82' : 'ctrl-82'); // mac: Cmd-R, rest: Ctrl-R
+
+            window.addEventListener('keydown', function(e) {
+                var key = extractKey(e);
+                if (key === TOGGLE_DEV_TOOLS_KB) {
+                    ipc.send('toggleDevTools');
+                } else if (key === RELOAD_KB) {
+                    ipc.send('reloadWindow');
+                }
+            });
         </script>
         <script src="dist/bundle.js"></script>
     </body>

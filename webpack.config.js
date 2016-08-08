@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+    devtool: 'sourcemap',
     entry: {
         main: ['./src/js/main.js']
     },
@@ -54,7 +55,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({ minimize: true, comments: false, compress: { warnings: false } }),
+        // new webpack.optimize.UglifyJsPlugin({ minimize: true, comments: false, compress: { warnings: false } }),
         new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"production"' } }),
         new ExtractTextPlugin('main.css', { allChunks: true }),
     ]
