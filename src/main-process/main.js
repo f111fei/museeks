@@ -62,7 +62,7 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow(mainWindowOption);
 
     // ... and load our html page
-    mainWindow.loadURL(`file://${srcPath}/app.html#/library`);
+    mainWindow.loadURL(`file://${srcPath}/app.html`);
 
     mainWindow.on('closed', () => {
         // Dereference the window object

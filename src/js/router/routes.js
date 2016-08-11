@@ -1,6 +1,6 @@
 // Modules
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRedirect } from 'react-router';
 
 // Actions
 import AppActions from '../actions/AppActions';
@@ -31,6 +31,7 @@ const init = {
 // Router
 const routes = (
     <Route component={ App } path='/' onEnter={ init.app }>
+        <IndexRedirect to="/library" />
         <Route path='library' component={ Library } onEnter={ init.library } />
         <Route path='settings' component={ Settings } />
         <Route path='playlists' component={ Playlists }>
